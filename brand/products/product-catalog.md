@@ -117,6 +117,17 @@ Two complementary product lines that serve the same woman at different levels.
 
 ---
 
+### The Awakening Map
+- **Price:** $22.22
+- **Format:** Digital PDF (print at home)
+- **Description:** A guided journal for women who are waking up and want to know they're not losing their minds. Six stages of spiritual awakening — education, journal prompts, and practical tools for each stage. Written by Susanne from lived experience, not in retrospect.
+- **Price note:** $22.22 — angel number for alignment, trust, and divine timing. Intentional.
+- **Design note:** Designed to be printed and written in by hand. The physical act of writing is by design, not an afterthought.
+- **Origin:** Born from the "My Awakening Story" series. The guide Susanne searched for at 2am and never found.
+- **Positioning:** Companion product to the Awakening Story content series / Reinvention Line
+
+---
+
 ## PRICING LADDER
 | Price    | Products |
 |----------|----------|
