@@ -1,4 +1,4 @@
-# Claude Instructions
+# Claude Instructions — Lumarinne Lifestyle
 
 ## Brand Context
 Before generating any content, copy, designs, social posts, emails, or product descriptions — always read the following files first:
@@ -12,4 +12,9 @@ Before generating any content, copy, designs, social posts, emails, or product d
 - Always write in the brand voice defined in `voice-and-style.md`
 - Never use words or phrases listed under "Words We Avoid"
 - When in doubt about tone, refer to the content samples
-- Product details should always match `product-catalog.md` exactly
+- Product details (names, prices, page counts, formats) must always match `product-catalog.md` exactly
+- The brand is Lumarinne Lifestyle, founded by Susanne
+- All personal communications are signed: *Susanne / Lumarinne • Awakening Your Inner Light*
+- The audience is women 40–65 in major life transitions — always write with them in mind
+- Never use urgency tactics, countdown language, or aggressive sales copy
+- Social media tone is quiet conversation, not sales pitch
