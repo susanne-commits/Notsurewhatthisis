@@ -1,0 +1,17 @@
+post_id,date,platform,post_type,title,file,image_note,status
+post-01-ig,2026-04-08,Instagram,carousel,Part 1 — The Shattering,post-01-part1-shattering-instagram.txt,cover_1.png,ready
+post-01-fb,2026-04-08,Facebook,long-form,Part 1 — The Shattering,post-01-part1-shattering-facebook.txt,cover_1.png,ready
+post-02-ig,2026-04-10,Instagram,carousel,Part 2 — The Full Moon,post-02-part2-fullmoon-instagram.txt,cover_2.png,ready
+post-02-fb,2026-04-10,Facebook,long-form,Part 2 — The Full Moon,post-02-part2-fullmoon-facebook.txt,cover_2.png,ready
+post-03-ig,2026-04-12,Instagram,single,Council of Light (companion),post-03-council-of-light-instagram.txt,cover_council.png,ready
+post-03-fb,2026-04-12,Facebook,long-form,Council of Light (companion),post-03-council-of-light-facebook.txt,cover_council.png,ready
+post-04-ig,2026-04-14,Instagram,carousel,Part 3 — The Shopkeeper,post-04-part3-shopkeeper-instagram.txt,cover_3.png,ready
+post-04-fb,2026-04-14,Facebook,long-form,Part 3 — The Shopkeeper,post-04-part3-shopkeeper-facebook.txt,cover_3.png,ready
+post-05-ig,2026-04-16,Instagram,carousel,Part 4 — The Ankh,post-05-part4-ankh-instagram.txt,cover_4.png,ready
+post-05-fb,2026-04-16,Facebook,long-form,Part 4 — The Ankh,post-05-part4-ankh-facebook.txt,cover_4.png,ready
+post-06-ig,2026-04-18,Instagram,carousel,Part 5 — The Becoming,post-06-part5-becoming-instagram.txt,cover_5.png,ready
+post-06-fb,2026-04-18,Facebook,long-form,Part 5 — The Becoming,post-06-part5-becoming-facebook.txt,cover_5.png,ready
+post-07-ig,2026-04-20,Instagram,carousel,Part 6 — Light by the Sea,post-07-part6-lightbythesea-instagram.txt,cover_6.png,ready
+post-07-fb,2026-04-20,Facebook,long-form,Part 6 — Light by the Sea,post-07-part6-lightbythesea-facebook.txt,cover_6.png,ready
+post-08-ig,2026-04-22,Instagram,single,The Awakening Map — Product Launch,post-08-awakeningmap-instagram.txt,cover_map.png,ready
+post-08-fb,2026-04-22,Facebook,long-form,The Awakening Map — Product Launch,post-08-awakeningmap-facebook.txt,cover_map.png,ready
