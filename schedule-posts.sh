@@ -67,6 +67,7 @@ schedule_post() {
   local scheduled_time="$4"
   local label="$5"
   local page_id="${6:-}"
+  local media_urls="${7:-[]}"
 
   local target_json
   if [[ "$platform" == "facebook" && -n "$page_id" ]]; then
@@ -82,12 +83,13 @@ schedule_post() {
     --arg account_id "$account_id" \
     --arg scheduled_time "$scheduled_time" \
     --argjson target "$target_json" \
+    --argjson media_urls "$media_urls" \
     '{
       post: {
         accountId: $account_id,
         content: {
           text: $text,
-          mediaUrls: [],
+          mediaUrls: $media_urls,
           platform: $platform
         },
         target: $target
@@ -110,6 +112,18 @@ schedule_post() {
 echo "Scheduling posts..."
 echo ""
 
+# ── Cover image URLs (GitHub raw, pinned to commit SHA) ──────────────────────
+IMG_BASE="https://raw.githubusercontent.com/susanne-commits/Notsurewhatthisis/df2e17cb689fea2105afa2b705b9cfaa765a587b/blotato-posts"
+IMG_1="[\"$IMG_BASE/cover_1.png\"]"
+IMG_2="[\"$IMG_BASE/cover_2.png\"]"
+IMG_COUNCIL="[\"$IMG_BASE/cover_council.png\"]"
+IMG_3="[\"$IMG_BASE/cover_3.png\"]"
+IMG_4="[\"$IMG_BASE/cover_4.png\"]"
+IMG_5="[\"$IMG_BASE/cover_5.png\"]"
+IMG_6="[\"$IMG_BASE/cover_6.png\"]"
+# NOTE: cover_map.png was not uploaded — add the image manually in Blotato after scheduling.
+IMG_MAP="[]"
+
 # ── POST 1: Part 1 — The Shattering  (April 13, Monday) ─────────────────────
 CAPTION_1="I've never told this story publicly before.
 
@@ -125,8 +139,8 @@ Part 2 drops in 2 days. 🪶
 
 #spiritualawakening #awakeningjourney #lumarinne #awakeningstory #startingover #healingjourney #womenwhoheal #lightworker #newchapter #findingmyself"
 
-[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_1" "2026-04-08T22:00:00+00:00" "Part 1 — The Shattering"
-[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_1" "2026-04-08T22:00:00+00:00" "Part 1 — The Shattering" "$FB_PAGE_ID"
+[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_1" "2026-04-08T22:00:00+00:00" "Part 1 — The Shattering" "" "$IMG_1"
+[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_1" "2026-04-08T22:00:00+00:00" "Part 1 — The Shattering" "$FB_PAGE_ID" "$IMG_1"
 
 # ── POST 2: Part 2 — The Full Moon  (April 15, Wednesday) ───────────────────
 CAPTION_2="The full moon is where it started.
@@ -141,8 +155,8 @@ Part 3 drops in 4 days — and it's the one that gave me chills to write. 🌙
 
 #fullmooncircle #spiritualawakening #counciloflight #lumarinne #awakeningstory #energyhealing #oracledeck #moonritual #healingjourney #divinesigns"
 
-[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_2" "2026-04-10T13:00:00+00:00" "Part 2 — The Full Moon"
-[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_2" "2026-04-10T13:00:00+00:00" "Part 2 — The Full Moon" "$FB_PAGE_ID"
+[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_2" "2026-04-10T13:00:00+00:00" "Part 2 — The Full Moon" "" "$IMG_2"
+[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_2" "2026-04-10T13:00:00+00:00" "Part 2 — The Full Moon" "$FB_PAGE_ID" "$IMG_2"
 
 # ── POST 3: Council of Light — Companion Post  (April 17, Friday) ───────────
 CAPTION_3="In Part 2 of my story, I told you about the card.
@@ -167,8 +181,8 @@ If you're reading this and something in you just lit up, that's not an accident 
 
 #counciloflight #lightworker #spiritualguidance #oraclecards #divineorchestration #lumarinne #awakeningstory #spiritguides #angels #ascendedmasters"
 
-[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_3" "2026-04-12T13:00:00+00:00" "Council of Light"
-[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_3" "2026-04-12T13:00:00+00:00" "Council of Light" "$FB_PAGE_ID"
+[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_3" "2026-04-12T13:00:00+00:00" "Council of Light" "" "$IMG_COUNCIL"
+[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_3" "2026-04-12T13:00:00+00:00" "Council of Light" "$FB_PAGE_ID" "$IMG_COUNCIL"
 
 # ── POST 4: Part 3 — The Shopkeeper  (April 19, Sunday) ─────────────────────
 CAPTION_4="This is the part of the story that still gives me chills.
@@ -181,8 +195,8 @@ Part 3 of my awakening story. Start from Part 1 if you're new (link in bio). �
 
 #synchronicity #crystalshop #tarotreading #spiritualawakening #lumarinne #awakeningstory #divinesigns #spain #healingjourney #trusttheuniverse"
 
-[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_4" "2026-04-14T13:00:00+00:00" "Part 3 — The Shopkeeper"
-[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_4" "2026-04-14T13:00:00+00:00" "Part 3 — The Shopkeeper" "$FB_PAGE_ID"
+[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_4" "2026-04-14T13:00:00+00:00" "Part 3 — The Shopkeeper" "" "$IMG_3"
+[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_4" "2026-04-14T13:00:00+00:00" "Part 3 — The Shopkeeper" "$FB_PAGE_ID" "$IMG_3"
 
 # ── POST 5: Part 4 — The Ankh  (April 21, Tuesday) ──────────────────────────
 CAPTION_5="\"You are very protected.\"
@@ -197,8 +211,8 @@ Part 4. The ankh. The energy. And the woman who confirmed it all on my last nigh
 
 #reiki #ankh #energyhealing #rootchakra #spiritualprotection #lumarinne #awakeningstory #youareprotected #healingjourney #divineenergy"
 
-[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_5" "2026-04-16T13:00:00+00:00" "Part 4 — The Ankh"
-[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_5" "2026-04-16T13:00:00+00:00" "Part 4 — The Ankh" "$FB_PAGE_ID"
+[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_5" "2026-04-16T13:00:00+00:00" "Part 4 — The Ankh" "" "$IMG_4"
+[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_5" "2026-04-16T13:00:00+00:00" "Part 4 — The Ankh" "$FB_PAGE_ID" "$IMG_4"
 
 # ── POST 6: Part 5 — The Becoming  (April 23, Thursday) ─────────────────────
 CAPTION_6="This was the quiet part of the awakening. No healers. No cards. No sessions.
@@ -211,8 +225,8 @@ Part 5. The becoming. 🪶
 
 #becomingher #solitude #spiritualawakening #lumarinne #awakeningstory #lettinggo #newchapter #startingover #womenover40 #selfreclamation"
 
-[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_6" "2026-04-18T13:00:00+00:00" "Part 5 — The Becoming"
-[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_6" "2026-04-18T13:00:00+00:00" "Part 5 — The Becoming" "$FB_PAGE_ID"
+[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_6" "2026-04-18T13:00:00+00:00" "Part 5 — The Becoming" "" "$IMG_5"
+[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_6" "2026-04-18T13:00:00+00:00" "Part 5 — The Becoming" "$FB_PAGE_ID" "$IMG_5"
 
 # ── POST 7: Part 6 — Light by the Sea  (April 25, Saturday) ─────────────────
 CAPTION_7="Luma: light. Marinne: the sea.
@@ -227,8 +241,8 @@ I made a guide for women who are going through what I went through. It's called 
 
 #lumarinne #lightbythesea #awakeningstory #spiritualawakening #brandstory #womenwhoheal #startingover #italy #newbeginnings #awakeish"
 
-[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_7" "2026-04-20T13:00:00+00:00" "Part 6 — Light by the Sea"
-[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_7" "2026-04-20T13:00:00+00:00" "Part 6 — Light by the Sea" "$FB_PAGE_ID"
+[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_7" "2026-04-20T13:00:00+00:00" "Part 6 — Light by the Sea" "" "$IMG_6"
+[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_7" "2026-04-20T13:00:00+00:00" "Part 6 — Light by the Sea" "$FB_PAGE_ID" "$IMG_6"
 
 # ── POST 8: The Awakening Map — Product Launch  (April 27, Monday) ───────────
 CAPTION_8="When everything was happening to me in Spain — the full moon circles, the energy work, the cards, the signs — I kept searching for something that would tell me I wasn't crazy.
@@ -249,8 +263,9 @@ Link in bio. 🪶
 
 #theawakeningmap #lumarinne #awakenishjournal #spiritualawakening #guidedjournal #womenwhoheal #awakeish #healingtools #journaling #awakeningstages"
 
-[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_8" "2026-04-22T13:00:00+00:00" "Awakening Map — Product Launch"
-[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_8" "2026-04-22T13:00:00+00:00" "Awakening Map — Product Launch" "$FB_PAGE_ID"
+# IMG_MAP is empty — add cover_map.png manually in Blotato after scheduling.
+[[ -n "$IG_ACCOUNT_ID" ]] && schedule_post "instagram" "$IG_ACCOUNT_ID" "$CAPTION_8" "2026-04-22T13:00:00+00:00" "Awakening Map — Product Launch" "" "$IMG_MAP"
+[[ -n "$FB_ACCOUNT_ID" ]] && schedule_post "facebook" "$FB_ACCOUNT_ID" "$CAPTION_8" "2026-04-22T13:00:00+00:00" "Awakening Map — Product Launch" "$FB_PAGE_ID" "$IMG_MAP"
 
 # ── Done ─────────────────────────────────────────────────────────────────────
 echo ""
