@@ -40,10 +40,16 @@ $FbPageId = ""
 if ($FbAccountId) {
     try {
         $Subaccounts = Invoke-RestMethod -Uri "$BaseUrl/users/me/accounts/$FbAccountId/subaccounts" -Headers $Headers -Method GET
+        # Try pageId first, then id as fallback
         $FbPageId = $Subaccounts.items[0].pageId
-        Write-Host "Facebook page ID     : $(if ($FbPageId) { $FbPageId } else { 'not found in subaccounts' })"
+        if (-not $FbPageId) { $FbPageId = $Subaccounts.items[0].id }
+        Write-Host "Facebook page ID     : $(if ($FbPageId) { $FbPageId } else { 'NOT FOUND — Facebook posts will be skipped' })"
+        if (-not $FbPageId) {
+            Write-Host "  Subaccounts raw: $($Subaccounts | ConvertTo-Json -Depth 5)"
+        }
     } catch {
-        Write-Host "Facebook page ID     : ERROR fetching subaccounts — $($_.Exception.Message)"
+        Write-Host "Facebook page ID     : ERROR — $($_.ErrorDetails.Message)"
+        $FbPageId = ""
     }
 } else {
     Write-Host "Facebook page ID     : skipped (no Facebook account)"
@@ -63,7 +69,11 @@ function Schedule-Post {
         [string[]]$MediaUrls = @()
     )
 
-    if ($Platform -eq "facebook" -and $PageId) {
+    if ($Platform -eq "facebook" -and -not $PageId) {
+        Write-Host "  - Skipped:    $Label (facebook) — no pageId found"
+        return
+    }
+    if ($Platform -eq "facebook") {
         $Target = [ordered]@{ targetType = "facebook"; pageId = $PageId }
     } else {
         $Target = [ordered]@{ targetType = $Platform }
@@ -123,7 +133,7 @@ If something in your life is shifting right now, you might see yourself in this 
 
 Part 2 drops in 2 days. 🪶
 
-#spiritualawakening #awakeningjourney #lumarinne #awakeningstory #startingover #healingjourney #womenwhoheal #lightworker #newchapter #findingmyself
+#spiritualawakening #lumarinne #awakeningstory #healingjourney #womenwhoheal
 "@
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption1 "2026-04-08T22:00:00+00:00" "Part 1 — The Shattering" "" $Img1 }
@@ -141,7 +151,7 @@ This is Part 2. If you're new here, start with Part 1 (link in bio).
 
 Part 3 drops in 4 days — and it's the one that gave me chills to write. 🌙
 
-#fullmooncircle #spiritualawakening #counciloflight #lumarinne #awakeningstory #energyhealing #oracledeck #moonritual #healingjourney #divinesigns
+#fullmooncircle #spiritualawakening #lumarinne #awakeningstory #healingjourney
 "@
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption2 "2026-04-10T13:00:00+00:00" "Part 2 — The Full Moon" "" $Img2 }
@@ -169,7 +179,7 @@ This card was pulled for me twice. I don't believe that was random. I believe it
 
 If you're reading this and something in you just lit up, that's not an accident either. 🪶
 
-#counciloflight #lightworker #spiritualguidance #oraclecards #divineorchestration #lumarinne #awakeningstory #spiritguides #angels #ascendedmasters
+#counciloflight #lightworker #lumarinne #awakeningstory #divineorchestration
 "@
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption3 "2026-04-12T13:00:00+00:00" "Council of Light" "" $ImgCouncil }
@@ -185,7 +195,7 @@ I don't know her name. I never learned it. But she saw something in me that I wa
 
 Part 3 of my awakening story. Start from Part 1 if you're new (link in bio). 🪶
 
-#synchronicity #crystalshop #tarotreading #spiritualawakening #lumarinne #awakeningstory #divinesigns #spain #healingjourney #trusttheuniverse
+#synchronicity #spiritualawakening #lumarinne #awakeningstory #divinesigns
 "@
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption4 "2026-04-14T13:00:00+00:00" "Part 3 — The Shopkeeper" "" $Img3 }
@@ -203,7 +213,7 @@ I wasn't just stumbling through an awakening. I was being guided through one.
 
 Part 4. The ankh. The energy. And the woman who confirmed it all on my last night in Spain. 🪶
 
-#reiki #ankh #energyhealing #rootchakra #spiritualprotection #lumarinne #awakeningstory #youareprotected #healingjourney #divineenergy
+#reiki #energyhealing #lumarinne #awakeningstory #youareprotected
 "@
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption5 "2026-04-16T13:00:00+00:00" "Part 4 — The Ankh" "" $Img4 }
@@ -219,7 +229,7 @@ I am pretty much alone now. But I am not lonely. There is a difference the size 
 
 Part 5. The becoming. 🪶
 
-#becomingher #solitude #spiritualawakening #lumarinne #awakeningstory #lettinggo #newchapter #startingover #womenover40 #selfreclamation
+#becomingher #spiritualawakening #lumarinne #awakeningstory #selfreclamation
 "@
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption6 "2026-04-18T13:00:00+00:00" "Part 5 — The Becoming" "" $Img5 }
@@ -237,7 +247,7 @@ Thank you for reading this story. Thank you for being here. If any part of it ma
 
 I made a guide for women who are going through what I went through. It's called The Awakening Map. Link in bio. 🪶
 
-#lumarinne #lightbythesea #awakeningstory #spiritualawakening #brandstory #womenwhoheal #startingover #italy #newbeginnings #awakeish
+#lumarinne #awakeningstory #spiritualawakening #womenwhoheal #newbeginnings
 "@
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption7 "2026-04-20T13:00:00+00:00" "Part 6 — Light by the Sea" "" $Img6 }
@@ -261,7 +271,7 @@ This is designed to be printed and written in by hand. There is something about 
 
 Link in bio. 🪶
 
-#theawakeningmap #lumarinne #awakenishjournal #spiritualawakening #guidedjournal #womenwhoheal #awakeish #healingtools #journaling #awakeningstages
+#theawakeningmap #lumarinne #spiritualawakening #guidedjournal #womenwhoheal
 "@
 
 # NOTE: cover_map.png was not uploaded — add the image manually in Blotato after scheduling.
