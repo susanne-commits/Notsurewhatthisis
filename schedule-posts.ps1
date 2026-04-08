@@ -41,8 +41,14 @@ if ($FbAccountId) {
     try {
         $Subaccounts = Invoke-RestMethod -Uri "$BaseUrl/users/me/accounts/$FbAccountId/subaccounts" -Headers $Headers -Method GET
         $FbPageId = $Subaccounts.items[0].pageId
-    } catch {}
+        Write-Host "Facebook page ID     : $(if ($FbPageId) { $FbPageId } else { 'not found in subaccounts' })"
+    } catch {
+        Write-Host "Facebook page ID     : ERROR fetching subaccounts — $($_.Exception.Message)"
+    }
+} else {
+    Write-Host "Facebook page ID     : skipped (no Facebook account)"
 }
+Write-Host ""
 
 # ── Step 2: Scheduling function ───────────────────────────────────────────────
 
@@ -80,8 +86,9 @@ function Schedule-Post {
         Invoke-RestMethod -Uri "$BaseUrl/posts" -Headers $Headers -Method POST -Body $Body | Out-Null
         Write-Host "  + Scheduled: $Label ($Platform)"
     } catch {
+        $ErrDetail = $_.ErrorDetails.Message
         Write-Host "  x Failed:    $Label ($Platform)"
-        Write-Host "    $($_.Exception.Message)"
+        Write-Host "    HTTP $($_.Exception.Response.StatusCode.Value__): $ErrDetail"
     }
 }
 
@@ -250,7 +257,7 @@ Six stages. Education, journal prompts, and practical tools for each one. Writte
 
 This is designed to be printed and written in by hand. There is something about the connection between your brain, your eyes, and your hands — the physical act of writing — that helps your body process and release what your mind is holding. That's not an afterthought. It's by design.
 
-$22.22 — because in the language of angel numbers, 2222 represents alignment, trust, and divine timing. The very things this journal was built to help you find.
+`$22.22 — because in the language of angel numbers, 2222 represents alignment, trust, and divine timing. The very things this journal was built to help you find.
 
 Link in bio. 🪶
 
