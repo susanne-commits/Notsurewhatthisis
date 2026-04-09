@@ -1,5 +1,5 @@
 # Lumarinne Lifestyle — Blotato Post Scheduler (Windows PowerShell)
-# Schedules the 8-post Awakening Story series to Instagram and Facebook.
+# Schedules the 8-post Awakening Story series to Instagram, Facebook, and TikTok.
 #
 # HOW TO RUN:
 #   1. Open PowerShell (press the Windows key, type PowerShell, press Enter)
@@ -23,14 +23,16 @@ try {
 
 $IgAccountId = ($Accounts.items | Where-Object { $_.platform -eq "instagram" } | Select-Object -First 1).id
 $FbAccountId = ($Accounts.items | Where-Object { $_.platform -eq "facebook" } | Select-Object -First 1).id
+$TtAccountId = ($Accounts.items | Where-Object { $_.platform -eq "tiktok" }   | Select-Object -First 1).id
 
 Write-Host ""
 Write-Host "Instagram account ID : $(if ($IgAccountId) { $IgAccountId } else { 'not found' })"
 Write-Host "Facebook account ID  : $(if ($FbAccountId) { $FbAccountId } else { 'not found' })"
+Write-Host "TikTok account ID    : $(if ($TtAccountId) { $TtAccountId } else { 'not found — connect at my.blotato.com/settings/social-accounts' })"
 Write-Host ""
 
-if (-not $IgAccountId -and -not $FbAccountId) {
-    Write-Host "Error: No Instagram or Facebook accounts found."
+if (-not $IgAccountId -and -not $FbAccountId -and -not $TtAccountId) {
+    Write-Host "Error: No social accounts found."
     Write-Host "Connect them at https://my.blotato.com/settings/social-accounts"
     exit 1
 }
@@ -102,6 +104,54 @@ function Schedule-Post {
     }
 }
 
+# ── TikTok scheduling function (extra required fields) ───────────────────────
+
+function Schedule-TikTok-Post {
+    param(
+        [string]$AccountId,
+        [string]$Text,
+        [string]$ScheduledTime,
+        [string]$Label,
+        [string[]]$MediaUrls = @()
+    )
+
+    if (-not $AccountId) {
+        Write-Host "  - Skipped:    $Label (tiktok) — account not connected"
+        return
+    }
+
+    $Body = [ordered]@{
+        post = [ordered]@{
+            accountId = $AccountId
+            content   = [ordered]@{
+                text      = $Text
+                mediaUrls = $MediaUrls
+                platform  = "tiktok"
+            }
+            target = [ordered]@{
+                targetType        = "tiktok"
+                privacyLevel      = "PUBLIC_TO_EVERYONE"
+                disabledComments  = $false
+                disabledDuet      = $false
+                disabledStitch    = $false
+                isBrandedContent  = $false
+                isYourBrand       = $false
+                isAiGenerated     = $false
+            }
+        }
+        scheduledTime = $ScheduledTime
+    } | ConvertTo-Json -Depth 10
+
+    try {
+        Invoke-RestMethod -Uri "$BaseUrl/posts" -Headers $Headers -Method POST -Body $Body | Out-Null
+        Write-Host "  + Scheduled: $Label (tiktok)"
+    } catch {
+        $ErrDetail = $_.ErrorDetails.Message
+        Write-Host "  x Failed:    $Label (tiktok)"
+        Write-Host "    HTTP $($_.Exception.Response.StatusCode.Value__): $ErrDetail"
+    }
+}
+
 # ── Cover image URLs ──────────────────────────────────────────────────────────
 
 $ImgBase    = "https://raw.githubusercontent.com/susanne-commits/Notsurewhatthisis/df2e17cb689fea2105afa2b705b9cfaa765a587b/blotato-posts"
@@ -113,6 +163,82 @@ $Img4       = @("$ImgBase/cover_4.png")
 $Img5       = @("$ImgBase/cover_5.png")
 $Img6       = @("$ImgBase/cover_6.png")
 $ImgMap     = @()   # cover_map.png not uploaded — add manually in Blotato
+
+# ── TikTok captions (same story, TikTok-native hashtags) ─────────────────────
+
+$TtCaption1 = @"
+I've never told this story publicly before.
+
+It started with a morning that broke everything open — and I didn't know yet that it was the beginning of something.
+
+This is Part 1 of my awakening story. 🪶
+
+#spiritualtiktok #awakeningstory #lumarinne #healingjourney
+"@
+
+$TtCaption2 = @"
+The full moon is where the opening happened.
+
+A card was pulled that had never been pulled before. And then it was pulled again.
+
+Part 2 of my awakening story. Start with Part 1 if you're new here. 🌙
+
+#spiritualtiktok #fullmoon #awakeningstory #lumarinne
+"@
+
+$TtCaption3 = @"
+The Council of Light — pulled twice in a row. Something that had never happened in my healer's entire practice.
+
+Here's what that card actually means, and why it stopped me. 🪶
+
+#spiritualtiktok #counciloflight #lightworker #lumarinne
+"@
+
+$TtCaption4 = @"
+A woman in a tiny crystal shop in Spain. She didn't speak my language. She insisted on reading my cards for free because she said she felt something the moment I walked in.
+
+Part 3 of my awakening story. 🪶
+
+#spiritualtiktok #synchronicity #awakeningstory #lumarinne
+"@
+
+$TtCaption5 = @"
+"You are very protected."
+
+Those four words changed how I understood everything that had happened to me.
+
+Part 4. The ankh. The energy work. The confirmation. 🪶
+
+#spiritualtiktok #energyhealing #awakeningstory #lumarinne
+"@
+
+$TtCaption6 = @"
+This was the quiet part of the awakening. No healers. No cards. No sessions.
+
+Just me, a journal, and five months of learning who I am without all the roles attached.
+
+Part 5. The becoming. 🪶
+
+#spiritualtiktok #selfreclamation #awakeningstory #lumarinne
+"@
+
+$TtCaption7 = @"
+Luma: light. Marinne: the sea.
+
+Born under the full moon, by the Mediterranean, in the middle of starting over.
+
+Part 6 — the final chapter of my awakening story. Thank you for being here. 🪶
+
+#spiritualtiktok #lumarinne #awakeningstory #newbeginnings
+"@
+
+$TtCaption8 = @"
+I searched everywhere for a guide that would tell me I wasn't crazy during my awakening. I never found it. So I built it.
+
+The Awakening Map — a guided journal for women who are waking up. Link in bio. 🪶
+
+#spiritualtiktok #theawakeningmap #lumarinne #guidedjournal
+"@
 
 # ── Posts ─────────────────────────────────────────────────────────────────────
 
@@ -138,6 +264,7 @@ Part 2 drops in 2 days. 🪶
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption1 "2026-04-08T22:00:00+00:00" "Part 1 — The Shattering" "" $Img1 }
 if ($FbAccountId) { Schedule-Post "facebook"  $FbAccountId $Caption1 "2026-04-08T22:00:00+00:00" "Part 1 — The Shattering" $FbPageId $Img1 }
+Schedule-TikTok-Post $TtAccountId $TtCaption1 "2026-04-08T22:00:00+00:00" "Part 1 — The Shattering" $Img1
 
 # POST 2: Part 2 — The Full Moon  (April 10, 9am EDT)
 $Caption2 = @"
@@ -156,6 +283,7 @@ Part 3 drops in 4 days — and it's the one that gave me chills to write. 🌙
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption2 "2026-04-10T13:00:00+00:00" "Part 2 — The Full Moon" "" $Img2 }
 if ($FbAccountId) { Schedule-Post "facebook"  $FbAccountId $Caption2 "2026-04-10T13:00:00+00:00" "Part 2 — The Full Moon" $FbPageId $Img2 }
+Schedule-TikTok-Post $TtAccountId $TtCaption2 "2026-04-10T13:00:00+00:00" "Part 2 — The Full Moon" $Img2
 
 # POST 3: Council of Light — Companion Post  (April 12, 9am EDT)
 $Caption3 = @"
@@ -184,6 +312,7 @@ If you're reading this and something in you just lit up, that's not an accident 
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption3 "2026-04-12T13:00:00+00:00" "Council of Light" "" $ImgCouncil }
 if ($FbAccountId) { Schedule-Post "facebook"  $FbAccountId $Caption3 "2026-04-12T13:00:00+00:00" "Council of Light" $FbPageId $ImgCouncil }
+Schedule-TikTok-Post $TtAccountId $TtCaption3 "2026-04-12T13:00:00+00:00" "Council of Light" $ImgCouncil
 
 # POST 4: Part 3 — The Shopkeeper  (April 14, 9am EDT)
 $Caption4 = @"
@@ -200,6 +329,7 @@ Part 3 of my awakening story. Start from Part 1 if you're new (link in bio). �
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption4 "2026-04-14T13:00:00+00:00" "Part 3 — The Shopkeeper" "" $Img3 }
 if ($FbAccountId) { Schedule-Post "facebook"  $FbAccountId $Caption4 "2026-04-14T13:00:00+00:00" "Part 3 — The Shopkeeper" $FbPageId $Img3 }
+Schedule-TikTok-Post $TtAccountId $TtCaption4 "2026-04-14T13:00:00+00:00" "Part 3 — The Shopkeeper" $Img3
 
 # POST 5: Part 4 — The Ankh  (April 16, 9am EDT)
 $Caption5 = @"
@@ -218,6 +348,7 @@ Part 4. The ankh. The energy. And the woman who confirmed it all on my last nigh
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption5 "2026-04-16T13:00:00+00:00" "Part 4 — The Ankh" "" $Img4 }
 if ($FbAccountId) { Schedule-Post "facebook"  $FbAccountId $Caption5 "2026-04-16T13:00:00+00:00" "Part 4 — The Ankh" $FbPageId $Img4 }
+Schedule-TikTok-Post $TtAccountId $TtCaption5 "2026-04-16T13:00:00+00:00" "Part 4 — The Ankh" $Img4
 
 # POST 6: Part 5 — The Becoming  (April 18, 9am EDT)
 $Caption6 = @"
@@ -234,6 +365,7 @@ Part 5. The becoming. 🪶
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption6 "2026-04-18T13:00:00+00:00" "Part 5 — The Becoming" "" $Img5 }
 if ($FbAccountId) { Schedule-Post "facebook"  $FbAccountId $Caption6 "2026-04-18T13:00:00+00:00" "Part 5 — The Becoming" $FbPageId $Img5 }
+Schedule-TikTok-Post $TtAccountId $TtCaption6 "2026-04-18T13:00:00+00:00" "Part 5 — The Becoming" $Img5
 
 # POST 7: Part 6 — Light by the Sea  (April 20, 9am EDT)
 $Caption7 = @"
@@ -252,6 +384,7 @@ I made a guide for women who are going through what I went through. It's called 
 
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption7 "2026-04-20T13:00:00+00:00" "Part 6 — Light by the Sea" "" $Img6 }
 if ($FbAccountId) { Schedule-Post "facebook"  $FbAccountId $Caption7 "2026-04-20T13:00:00+00:00" "Part 6 — Light by the Sea" $FbPageId $Img6 }
+Schedule-TikTok-Post $TtAccountId $TtCaption7 "2026-04-20T13:00:00+00:00" "Part 6 — Light by the Sea" $Img6
 
 # POST 8: The Awakening Map — Product Launch  (April 22, 9am EDT)
 $Caption8 = @"
@@ -277,6 +410,7 @@ Link in bio. 🪶
 # NOTE: cover_map.png was not uploaded — add the image manually in Blotato after scheduling.
 if ($IgAccountId) { Schedule-Post "instagram" $IgAccountId $Caption8 "2026-04-22T13:00:00+00:00" "Awakening Map — Product Launch" "" $ImgMap }
 if ($FbAccountId) { Schedule-Post "facebook"  $FbAccountId $Caption8 "2026-04-22T13:00:00+00:00" "Awakening Map — Product Launch" $FbPageId $ImgMap }
+Schedule-TikTok-Post $TtAccountId $TtCaption8 "2026-04-22T13:00:00+00:00" "Awakening Map — Product Launch" $ImgMap
 
 # ── Done ──────────────────────────────────────────────────────────────────────
 
@@ -294,4 +428,7 @@ Write-Host "  Apr 20 (Mon) 9am EDT  — Part 6: Light by the Sea"
 Write-Host "  Apr 22 (Wed) 9am EDT  — The Awakening Map (product launch)"
 Write-Host ""
 Write-Host "REMINDER: Add the cover image to the Awakening Map post (Apr 22) manually in Blotato."
-Write-Host "          Go to https://my.blotato.com and edit that post to attach cover_map.png."
+Write-Host "          Go to https://my.blotato.com and edit that post (on all 3 platforms) to attach cover_map.png."
+Write-Host ""
+Write-Host "NOTE: If TikTok posts were skipped, connect TikTok at https://my.blotato.com/settings/social-accounts"
+Write-Host "      then run this script again."
