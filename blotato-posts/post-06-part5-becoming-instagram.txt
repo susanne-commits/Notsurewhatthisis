@@ -1,5 +1,5 @@
 PLATFORM: Instagram
-TYPE: Carousel (9 slides)
+TYPE: Carousel — repeat cover image for all slides
 DATE: 2026-04-18
 IMAGE: cover_5.png
 IMAGE NOTE: Journal on beach — "Liberation" entry — the becoming

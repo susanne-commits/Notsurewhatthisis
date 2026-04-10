@@ -1,5 +1,5 @@
 PLATFORM: Instagram
-TYPE: Carousel (8–10 slides)
+TYPE: Carousel — repeat cover image for all slides
 DATE: 2026-04-10
 IMAGE: cover_2.png
 IMAGE NOTE: Full moon circle setup with ocean and blood moon visible

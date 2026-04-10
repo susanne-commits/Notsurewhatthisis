@@ -1,5 +1,5 @@
 PLATFORM: Instagram
-TYPE: Carousel (8–10 slides)
+TYPE: Carousel — repeat cover image for all slides
 DATE: 2026-04-08
 IMAGE: cover_1.png
 IMAGE NOTE: Marbella/Spain sunset over palm silhouettes — cream to gold to rose gradient sky

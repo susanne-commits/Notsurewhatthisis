@@ -1,5 +1,5 @@
 PLATFORM: Instagram
-TYPE: Carousel (8–9 slides)
+TYPE: Carousel — repeat cover image for all slides
 DATE: 2026-04-14
 IMAGE: cover_3.png
 IMAGE NOTE: Crystals on beach towel (daylight) — the seeking

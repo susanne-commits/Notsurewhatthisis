@@ -1,5 +1,5 @@
 PLATFORM: Instagram
-TYPE: Carousel (8 slides)
+TYPE: Carousel — repeat cover image for all slides
 DATE: 2026-04-16
 IMAGE: cover_4.png
 IMAGE NOTE: Close-up of circle with candles and moon — the energy

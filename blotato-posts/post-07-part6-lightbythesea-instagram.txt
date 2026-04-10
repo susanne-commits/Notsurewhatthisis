@@ -1,5 +1,5 @@
 PLATFORM: Instagram
-TYPE: Carousel (9 slides)
+TYPE: Carousel — repeat cover image for all slides
 DATE: 2026-04-20
 IMAGE: cover_6.png
 IMAGE NOTE: Wide shot of circle with moon over sea — light by the sea
