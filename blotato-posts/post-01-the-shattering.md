@@ -1,0 +1,73 @@
+# Post 01 — Part 1: The Shattering
+## ⚠️ REPOST IMMEDIATELY AS CAROUSEL — original was posted incorrectly
+
+---
+
+## Metadata
+
+- **Schedule:** April 10, 2026 — IMMEDIATE
+- **Platforms:** Instagram (Carousel) + Facebook (Long-form)
+- **Series:** My Awakening Story — Part 1 of 6
+- **Photo:** cover_1.png — Marbella sunset over palm silhouettes
+
+---
+
+## Instagram Carousel (10 Slides)
+
+**Slide 1:** Cover image — use cover_1.png
+`"Part 1 of 6 | My Awakening Story"`
+
+**Slide 2:**
+For most of my adult life, I was the one who held everything together.
+
+**Slide 3:**
+I was a school administrator. A mother of three. The person who said yes to everything, showed up for everyone, and made sure everyone was taken care of. I was the organizer. The fixer. The one nobody worried about.
+
+**Slide 4:**
+And then one ordinary morning, a voice — clear, unmistakable, urgent — told me to go talk to my son. Not later. Not after work. Right now.
+
+**Slide 5:**
+I listened. And my world fell apart.
+
+**Slide 6:**
+What I learned that morning was a family betrayal involving my son that shattered everything I thought I knew about trust and protection.
+
+**Slide 7:**
+I got my son into counseling immediately. I finished the school year. And then I retired. Not because I was ready. Because I could no longer be the person I had been before that morning.
+
+**Slide 8:**
+I pulled my son out of school and enrolled him in a private online program so he could travel with me. And I made a decision that felt like survival more than strategy: I was going to leave.
+
+**Slide 9:**
+So I went to Spain. Just me and my son. No plan. No timeline. Just the understanding that if I stayed still any longer, I was going to disappear inside the life I'd built.
+
+**Slide 10:**
+I didn't know it yet, but that trip was going to change everything. → Part 2 coming soon.
+
+---
+
+## Instagram Caption
+
+I've never told this story publicly before.
+
+For a long time, I didn't think I was allowed to. It felt too raw. Too real. Too much.
+
+But this is the story of how Lumarinne was born — and it didn't start with a business plan or a product idea. It started with a morning that broke everything.
+
+This is Part 1 of my awakening story. I'll be sharing the full journey over the next two weeks — from the shattering, to the full moon circle on a Spanish beach, to the healers who saw something in me I couldn't see yet, to the woman I became on the other side.
+
+If something in your life is shifting right now, you might see yourself in this story. That's not an accident.
+
+Part 2 drops in 2 days. 🪶
+
+#spiritualawakening #awakeningjourney #lumarinne #awakeningstory #startingover #healingjourney #womenwhoheal #lightworker #newchapter #findingmyself
+
+---
+
+## Facebook (Long-form)
+
+Post the full text of Part 1 from `brand/content-samples/my-awakening-story-series.md`. End with:
+
+> Part 2 drops in 2 days. I'll tell you what happened under a full moon on a Spanish beach — and the card that had never been pulled before.
+>
+> If this story resonates, share it with a woman who might need to hear it. 🪶

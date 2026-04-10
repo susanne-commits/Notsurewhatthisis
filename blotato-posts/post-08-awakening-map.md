@@ -1,0 +1,42 @@
+# Post 08 — The Awakening Map (Product Launch)
+
+---
+
+## Metadata
+
+- **Schedule:** April 24, 2026 — 9:00 AM
+- **Platforms:** Instagram (Single Image) + Facebook (Long-form)
+- **Series:** My Awakening Story — Product Launch
+- **Photo:** cover_map.png — Circle setup at dusk — transition/offering
+
+---
+
+## Instagram Caption
+
+When everything was happening to me in Spain — the full moon circles, the energy work, the cards, the signs — I kept searching for something that would tell me I wasn't crazy.
+
+I googled "spiritual awakening" at 2am. I asked healers. I asked AI. I was looking for a guide that would say: this is real, this is what's happening, here's what comes next.
+
+I never found it. So I built it.
+
+The Awakening Map is a guided journal for women who are waking up and want to know they're not losing their minds.
+
+Six stages. Education, journal prompts, and practical tools for each one. Written by a woman who went through it and documented it in real time — not by a guru looking backward.
+
+This is designed to be printed and written in by hand. There is something about the connection between your brain, your eyes, and your hands — the physical act of writing — that helps your body process and release what your mind is holding. That's not an afterthought. It's by design.
+
+$22.22 — because in the language of angel numbers, 2222 represents alignment, trust, and divine timing. The very things this journal was built to help you find.
+
+Link in bio. 🪶
+
+#theawakeningmap #lumarinne #awakenishjournal #spiritualawakening #guidedjournal #womenwhoheal #awakeish #healingtools #journaling #awakeningstages
+
+---
+
+## Facebook (Long-form)
+
+Same as Instagram caption, plus add:
+
+> If you read my 6-part awakening story over the past two weeks, this is the guide that came from that experience. Everything I learned, searched for, and wished I'd had — organized into six stages with space to make it yours.
+>
+> Available now at lumarinne.com. 🪶

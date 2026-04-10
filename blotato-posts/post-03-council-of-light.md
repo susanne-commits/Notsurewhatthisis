@@ -1,0 +1,42 @@
+# Post 03 — Council of Light (Companion Post)
+
+---
+
+## Metadata
+
+- **Schedule:** April 14, 2026 — 9:00 AM
+- **Platforms:** Instagram (Single Image) + Facebook
+- **Series:** My Awakening Story — Companion to Part 2
+- **Photo:** cover_council.png — Close-up of candlelit circle — mystical
+
+---
+
+## Instagram Caption
+
+In Part 2 of my story, I told you about the card.
+
+The Council of Light — pulled twice in a row, something that had never happened in my healer's entire practice.
+
+So what does this card actually mean?
+
+The Council of Light represents divine orchestration. It's a message that you have a personal team of helpers in the spiritual realm — ascended masters, light beings, angels, and guides — who are devoted to helping you fulfill your soul's mission.
+
+But here's the part that stopped me: because we live in a world where free will reigns, they cannot help you without your permission. You have to ask.
+
+They can help with anything — nothing is too big or too small. Think of them as your personal team in the spirit realm, ready to step in the moment you invite them.
+
+If you're a lightworker — someone who feels called to uplift others and raise consciousness — the Council of Light is where your personal mission originates.
+
+The activation is simple: place your hands over your heart and say, "Council of Light, I am ready to receive your help for fulfilling my personal mission. Thank you for guiding me with clarity every step of the way and for sending me helpers and experiences that delight my mind, body, and soul."
+
+This card was pulled for me twice. I don't believe that was random. I believe it was an invitation — and I accepted it.
+
+If you're reading this and something in you just lit up, that's not an accident either. 🪶
+
+#counciloflight #lightworker #spiritualguidance #oraclecards #divineorchestration #lumarinne #awakeningstory #spiritguides #angels #ascendedmasters
+
+---
+
+## Facebook
+
+Same as Instagram caption — works at this length for Facebook.
