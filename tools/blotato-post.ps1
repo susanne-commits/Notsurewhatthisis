@@ -155,10 +155,10 @@ function Build-Slides($postNum, $coverPath, $texts, $label) {
 # Post to Instagram (raw response — IG returns plain text, not JSON).
 # $sched = ISO 8601 UTC string, or $null to post live immediately.
 function Post-IG($caption, $mediaUrls, $sched) {
-    $args = @{ accountId=$igId; platform="instagram"; text=$caption; mediaUrls=$mediaUrls }
-    if ($sched) { $args.scheduledTime = $sched }
+    $postArgs = @{ accountId=$igId; platform="instagram"; text=$caption; mediaUrls=$mediaUrls }
+    if ($sched) { $postArgs.scheduledTime = $sched }
     $r = Invoke-RestMethod -Uri $blotatoUrl -Method Post -Headers $hdrs -Body (
-        @{ jsonrpc="2.0"; id=1; method="tools/call"; params=@{ name="blotato_create_post"; arguments=$args } } |
+        @{ jsonrpc="2.0"; id=1; method="tools/call"; params=@{ name="blotato_create_post"; arguments=$postArgs } } |
         ConvertTo-Json -Depth 10)
     Write-Host "  IG: $($r.result.content[0].text)"
 }
@@ -166,9 +166,9 @@ function Post-IG($caption, $mediaUrls, $sched) {
 # Post to Facebook (returns JSON — parsed and displayed).
 # $sched = ISO 8601 UTC string, or $null to post live immediately.
 function Post-FB($caption, $mediaUrls, $sched) {
-    $args = @{ accountId=$fbId; platform="facebook"; pageId=$fbPage; text=$caption; mediaUrls=$mediaUrls }
-    if ($sched) { $args.scheduledTime = $sched }
-    $r = Invoke-Blotato "blotato_create_post" $args
+    $postArgs = @{ accountId=$fbId; platform="facebook"; pageId=$fbPage; text=$caption; mediaUrls=$mediaUrls }
+    if ($sched) { $postArgs.scheduledTime = $sched }
+    $r = Invoke-Blotato "blotato_create_post" $postArgs
     Write-Host "  FB: $($r | ConvertTo-Json -Compress)"
 }
 
